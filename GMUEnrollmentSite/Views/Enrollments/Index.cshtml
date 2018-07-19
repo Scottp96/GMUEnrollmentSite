@@ -1,0 +1,64 @@
+﻿@model IEnumerable<GMUEnrollmentSite.Models.Enrollment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Full Name
+        </th>
+        <th>
+            Submission Date
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.CurrentGPA)
+        </th>
+        <th>
+            Combined SAT Score
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.EnrollmentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdmissionDecision)
+        </th>
+        <th>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.FirstName) @Html.DisplayFor(modelItem => item.Student.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.GraduationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.CurrentGPA)
+        </td>
+        <td>
+            @(int.Parse(item.Student.SATMath) + int.Parse(item.Student.SATVerbal))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.EnrollmentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdmissionDecision)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.EnrollmentID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.EnrollmentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.EnrollmentID })
+        </td>
+    </tr>
+}
+
+</table>
